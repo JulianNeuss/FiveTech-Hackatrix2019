@@ -1,3 +1,118 @@
 #keep
   .v-navigation-drawer__border
-    display: none
+    display: none;
+
+body div section{
+
+  text-align: center;
+  font-family: italic;
+  /*background-image: url(../data/img/tree.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;*/
+
+
+}
+.photoContainer img {
+      margin-top: 10px;
+      height: 260px;
+    }
+
+  .photoContainer img {
+    display: block;
+    margin: 0 auto;
+    margin-top: 80px;
+
+
+    }
+
+  .photoContainer img {
+    margin-top: 60px;
+    height: 260px;
+  }
+
+  .input{
+
+    width: 270px;
+    padding:15px 25px;
+    font-family: georgia;
+    background: #c8cbe0;
+    border:none;
+    border-radius: 5px;
+    color:#333;
+    font-size: 14px;
+    /*margin-top:30px;*/
+    margin-bottom: 20px;
+    display: flex;
+
+
+  }
+
+  div.genreBox {
+
+  width: 100%;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.title h2 {
+  margin: 0 auto;
+  width: 200px;
+  color: black;
+font-family: 'Cormorant SC', serif;
+  font-size: 30px;
+  text-align: center;
+  border-radius: 5px;
+  padding: 20px;
+  font-weight: bolder;
+  color: white;
+}
+
+
+p.errors {
+  font-size:12px;
+  padding: 12px;
+  color: red;
+  border: 1px solid red;
+  background-color: white;
+  border-radius: 10px;
+}
+
+#loginform{
+
+margin-top:20px;
+margin-left:auto;
+margin-right: auto;
+width:270px;
+
+}
+.buttonPages{
+
+  background-color: var(--submitButton-color);
+  border-radius: 5px/5px;
+  color: #c8c8c8;
+  display: inline-block;
+  font-family: georgia;
+  font-size: 18px;
+  font-weight: bold;
+  width: 270px;
+  text-align: center;
+  line-height: 50px;
+  text-decoration: none;
+  height: 50px;
+  margin: 20px 0 0;
+	border:none;
+	cursor: pointer;
+  padding-bottom: 60px;
+
+}
+
+.termItem{
+  color: white;
+}
+
+.link{
+display: block;
+  margin-top: 20px;
+  margin-left: 600px;
+}
