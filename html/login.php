@@ -1,6 +1,6 @@
 <?php
 
-require_once("../partials/funciones.php");
+require_once ("../partials/funciones.php");
 
 
  ?>
@@ -50,7 +50,7 @@ require_once("../partials/funciones.php");
 
  </form>
 
- <a style="color: white; " class="link" href="registration.php">Click here for registration</a>
+ <a style="color: white; " class="link" href="register.php">Click here for registration</a>
 
 
  </section>

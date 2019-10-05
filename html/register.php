@@ -1,6 +1,7 @@
 <?php
 
-require_once ("../partials/funciones.php");
+  require_once ("../partials/funciones.php");
+  require_once ("../partials/db.php");
 
 
   $name = "";
@@ -15,14 +16,29 @@ require_once ("../partials/funciones.php");
 
 
 
-
+if (isLogged()) {
+  header("location: index.php");exit;
+}
 
 
 
   if ($_POST) {
     $errors = validateRegistration($_POST);
 
+     if (count($errors) == 0) {
+       $user = createUser($_POST);
 
+       $user["avatarFile"] = $newName;
+
+       saveUser($user);
+
+
+
+       login($user["email"]);
+
+
+       header("location:login.php");exit;
+     }
 
 
   $name = $_POST["name"];
@@ -35,7 +51,9 @@ require_once ("../partials/funciones.php");
 
 }
 
- ?>
+
+
+?>
  <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -70,7 +88,7 @@ require_once ("../partials/funciones.php");
   <h2>Registration</h2>
 </div>
 
-<form id="loginform" action="registration.php" method="POST" enctype="multipart/form-data">
+<form id="loginform" action="register.php" method="POST" enctype="multipart/form-data">
 
   <label class="label" for="">
 <input type="text" class="input" name="name" placeholder="Name" value="<?=$name?>">

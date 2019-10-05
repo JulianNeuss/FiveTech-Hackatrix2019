@@ -1,7 +1,10 @@
 <?php
+require_once ("db.php");
+
+session_start();
 
 
-function validateRegistration($data) {
+  function validateRegistration($data) {
     $errors = [];
 
 //NAME
@@ -96,11 +99,137 @@ function validateRegistration($data) {
     return $errors;
   }
 
+  function existPassword($passFromDatabase) {
+
+    global $db;
+
+    $query = $db->prepare("SELECT * FROM memento_db.users WHERE password =:password");
+    $query ->bindParam(':password', $passFromDatabase, PDO::PARAM_STR);
+
+    $query ->execute();
+
+    $user = $query->fetch(PDO::FETCH_ASSOC);
+
+    return $user;
+  }
+
+  function existsEmail($email) {
+    $user = bringUserByEmail($email);
+
+    if ($user == null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  function bringUserByEmail($email) {
+    global $db;
+
+    $query = $db->prepare("SELECT * FROM memento_db.users WHERE email =:email");
+    $query ->bindParam(':email', $email, PDO::PARAM_STR);
+
+    $query ->execute();
+
+    $user = $query->fetch(PDO::FETCH_ASSOC);
+
+    if ($user) {
+      return $user;
+    } else {
+      return null;
+    }
+  }
+
+  function login($email) {
+    $loggedUser = bringUserByEmail($email);
+    $_SESSION["loggedUser"] = $email;
+  }
+
+  function createUser($data) {
+    echo ("<pre>");
+    var_dump ($data);
+    var_dump ($_FILES);
+    echo ("</pre>");
+    return [
+      "id" => proximoId(),
+      "name" => ucfirst($data["name"]),
+      "lastName" => ucfirst($data["last-name"]),
+      "username" => $data["username"],
+      "email" => $data["email"],
+     "avatar" => $_FILES["avatarFile"]["tmp_name"],
+     "genreSex" => $data["genreSex"],
+      "password" => password_hash($data["password"], PASSWORD_DEFAULT)
+    ];
+  }
 
 
 
 
 
+  function proximoId() {
+    global $db;
+
+    return $db->lastInsertId() + 1;
+  }
+
+  function bringAllUsers() {
+    global $db;
+    $query = $db-> prepare('SELECT * FROM users');
+    $query->execute();
+
+    $users = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    return $users;
+  }
+
+  function saveUser($user) {
+    global $db;
 
 
- ?>
+    $query = $db->prepare('INSERT INTO memento_db.users (name, lastName, username, email, password, avatar, genreSex)
+    VALUES (:name, :lastName,  :username, :email, :password, :avatar, :genreSex)');
+
+
+    $query->bindParam(':name', $user['name'], PDO::PARAM_STR);
+    $query->bindParam(':lastName', $user['lastName'], PDO::PARAM_STR);
+    $query->bindParam(':username', $user['username'], PDO::PARAM_STR);
+    $query->bindParam(':email', $user['email'], PDO::PARAM_STR);
+    $query->bindParam(':avatar', $_FILES['avatarFile']['name'], PDO::PARAM_STR);
+    $query->bindParam(':genreSex', $user["genreSex"], PDO::PARAM_STR);
+    $query->bindParam(':password', $user['password'], PDO::PARAM_STR);
+
+
+
+    $query->execute();
+
+
+
+  }
+
+  function isLogged() {
+    if (isset($_SESSION["loggedUser"])) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  function bringLoggedUser() {
+  if (isLoggued()) {
+    return bringUserByEmail($_SESSION["loggedUser"]);
+  }
+
+  return null;
+}
+
+function logout(){
+  $_SESSION = [];
+
+  header("location:login.php");exit;
+}
+
+
+
+
+
+?>
