@@ -6,18 +6,21 @@ new Vue({
     data: () => ({
       drawer: true,
       items: [
-        { icon: 'i', text: 'Most Popular' },
-        { icon: 'i', text: 'Subscriptions' },
-        { icon: 'i', text: 'History' },
-        { icon: 'i', text: 'Playlists' },
-        { icon: 'i', text: 'Watch Later' },
+        { icon: 'mdi-account-circle', text: 'Informacion' },
+        { icon: 'mdi-equalizer', text: 'Estadisticas' },
+        { icon: 'mdi-calendar-multiselect', text: 'Actividades' },
+      ],
+      itemStat: [
+        { title: 'Last Day', image:'casa' },
+        { title: 'Last Month', image:'logo1'  },
+        { title: 'Activities: Family', image:'casa.jpg'  },
       ],
       items2: [
-        { picture: 28, text: 'Julian' },
-        { picture: 38, text: 'Ignacio' },
-        { picture: 48, text: 'Xbox Ahoy' },
-        { picture: 58, text: 'Nokia' },
-        { picture: 78, text: 'MKBHD' },
+        { picture: 28, text: 'Julian Gonzalez' },
+        { picture: 38, text: 'Ignacio Godoy' },
+        { picture: 48, text: 'Mariana Ahoy' },
+        { picture: 68, text: 'Nokia Milcien' },
+        { picture: 78, text: 'Karina Estevez' },
       ],
     })
   })
