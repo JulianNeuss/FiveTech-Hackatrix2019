@@ -66,16 +66,38 @@
               <v-layout r>
                   <template>
                       <div>                    
-                        
-                        
-                          <template>
-                              <div class="text-center">
-                                <v-pagination
-                                  v-model="page"
-                                  :length="3"
-                                ></v-pagination>
-                              </div>
-                            </template>
+                          <v-layout row align-center style="max-width: 650px">
+                              <v-app id="inspire">
+                                <v-simple-table>
+                                  <template v-slot:default>
+                                    <thead>
+                                      <tr>
+                                        <th class="text-left">Information</th>
+                                        <th class="text-left">Data</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr v-for="item in info" :key="item.name">
+                                        <td>{{ item.name }}</td>
+                                        <td>{{ item.calories }}</td>
+                                      </tr>
+                                    </tbody>
+                                  </template>
+                                </v-simple-table>
+                              </v-app>
+                          </v-layout>    
+
+                            <v-footer absolute class="font-weight-medium">
+                               <v-col class="text-center" cols="12"> <template>
+                                  <div class="text-center">
+                                    <v-pagination
+                                      v-model="page"
+                                      :length="3"
+                                    ></v-pagination>
+                                  </div>
+                                </template>
+                               </v-col>
+                            </v-footer>
                       </div>
                     </template>
               </v-layout>

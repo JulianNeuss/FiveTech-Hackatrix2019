@@ -22,5 +22,35 @@ new Vue({
         { picture: 68, text: 'Nokia Milcien' },
         { picture: 78, text: 'Karina Estevez' },
       ],
+        info: [
+          {
+            name: 'NAME ',
+            calories: 'Pedro Zaragoza',
+          },
+          {
+            name: 'AGE',
+            calories: 54,
+          },
+          {
+            name: 'GENDER',
+            calories: 'Male',
+          },
+          {
+            name: 'DNI',
+            calories: 17605011,
+          },
+          {
+            name: 'PHONE',
+            calories: 42152936,
+          },
+          {
+            name: 'EMERGENCY CONTACT NAME',
+            calories: 'Maria Lopez',
+          },
+          {
+            name: 'EMERGENCY CONTACT PHONE',
+            calories: 48058865,
+          },
+        ],
     })
   })
